@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # python3 -m pip install play_sounds asyncio
 
-import platform    # For getting the operating system name
+import os
+import platform  # For getting the operating system name
 import subprocess  # For executing a shell command
-import os, sys
+import sys
 
 from play_sounds import play_file, play_after
 from time import sleep
+
 
 def ping(host):
     """
@@ -15,13 +17,14 @@ def ping(host):
     """
 
     # Option for the number of packets as a function of
-    param = '-n' if platform.system().lower()=='windows' else '-c'
+    param = '-n' if platform.system().lower() == 'windows' else '-c'
 
     # Building the command. Ex: "ping -c 1 google.com"
     # command = ['ping', param, '1', host, '-t', '1']
     command = ['ping', host, '-t', '1']
 
     return subprocess.call(command) == 0
+
 
 # print(os.path.dirname(os.path.realpath(__file__)))
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
